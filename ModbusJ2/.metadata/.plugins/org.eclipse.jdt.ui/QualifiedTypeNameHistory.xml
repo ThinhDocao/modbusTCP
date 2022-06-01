@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.io.InputStream"/>
+    <fullyQualifiedTypeName name="mavenproject.ModbusModel"/>
+    <fullyQualifiedTypeName name="mavenproject.addressIdModel"/>
+    <fullyQualifiedTypeName name="mavenproject.MultithreadingAddress"/>
+    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="java.sql.Statement"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.ghgande.j2mod.modbus.procimg.InputRegister"/>
+    <fullyQualifiedTypeName name="org.quartz.Job"/>
+    <fullyQualifiedTypeName name="org.quartz.JobDetail"/>
+    <fullyQualifiedTypeName name="org.quartz.JobBuilder"/>
+    <fullyQualifiedTypeName name="org.quartz.Trigger"/>
+    <fullyQualifiedTypeName name="org.quartz.TriggerBuilder"/>
+    <fullyQualifiedTypeName name="org.quartz.Scheduler"/>
+    <fullyQualifiedTypeName name="org.quartz.impl.StdSchedulerFactory"/>
+    <fullyQualifiedTypeName name="org.quartz.CronScheduleBuilder"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.Map.Entry"/>
+    <fullyQualifiedTypeName name="java.lang.Thread"/>
+    <fullyQualifiedTypeName name="mavenproject.modelChannel"/>
+</qualifiedTypeNameHistroy>

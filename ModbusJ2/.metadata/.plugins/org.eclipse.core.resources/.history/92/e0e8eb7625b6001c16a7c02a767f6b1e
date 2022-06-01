@@ -1,0 +1,46 @@
+package mavenproject;
+
+import java.net.InetAddress;
+
+import com.ghgande.j2mod.modbus.ModbusException;
+import com.ghgande.j2mod.modbus.ModbusIOException;
+import com.ghgande.j2mod.modbus.ModbusSlaveException;
+import com.ghgande.j2mod.modbus.io.ModbusTCPTransaction;
+import com.ghgande.j2mod.modbus.msg.ModbusRequest;
+import com.ghgande.j2mod.modbus.msg.ModbusResponse;
+import com.ghgande.j2mod.modbus.msg.ReadMultipleRegistersRequest;
+import com.ghgande.j2mod.modbus.msg.ReadMultipleRegistersResponse;
+import com.ghgande.j2mod.modbus.net.TCPMasterConnection;
+
+public class TestModbus {
+	
+	private static ModbusResponse executeTransaction(TCPMasterConnection connection,
+	         ModbusRequest request) 
+	         throws ModbusIOException, ModbusSlaveException, ModbusException {
+	   ModbusTCPTransaction transaction = new ModbusTCPTransaction(connection);
+	   transaction.setRequest(request);
+	   transaction.execute();
+	   return transaction.getResponse();
+	}
+
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+		TCPMasterConnection con = null;
+		ModbusTCPTransaction trans = null;
+		final InetAddress address = InetAddress.getByName("113.164.176.132");
+		con = new TCPMasterConnection(address);
+		con.setPort(2253);
+		con.setTimeout(10000);
+
+//		log.info("[PVI SG1250] Try to connect with IP = {}, the port = {} ", iAddr.getHostAddress(), con.getPort());
+		con.connect();
+		trans = new ModbusTCPTransaction(con);
+//		trans.setRetries(1);
+		System.out.print(trans);
+		   ReadMultipleRegistersRequest request = new ReadMultipleRegistersRequest(0, 1);
+		   ReadMultipleRegistersResponse response = (ReadMultipleRegistersResponse)
+		       executeTransaction(con, request);
+		System.out.print(response);
+	}
+
+}

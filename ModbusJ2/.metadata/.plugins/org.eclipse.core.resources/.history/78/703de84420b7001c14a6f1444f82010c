@@ -1,0 +1,206 @@
+package mavenproject;
+
+import java.net.InetAddress;
+import java.nio.ByteBuffer;
+
+import com.ghgande.j2mod.modbus.ModbusException;
+import com.ghgande.j2mod.modbus.ModbusIOException;
+import com.ghgande.j2mod.modbus.ModbusSlaveException;
+import com.ghgande.j2mod.modbus.io.ModbusTCPTransaction;
+import com.ghgande.j2mod.modbus.msg.ModbusRequest;
+import com.ghgande.j2mod.modbus.msg.ModbusResponse;
+import com.ghgande.j2mod.modbus.msg.ReadInputRegistersRequest;
+import com.ghgande.j2mod.modbus.msg.ReadMultipleRegistersRequest;
+import com.ghgande.j2mod.modbus.msg.ReadMultipleRegistersResponse;
+import com.ghgande.j2mod.modbus.net.TCPMasterConnection;
+import com.ghgande.j2mod.modbus.procimg.InputRegister;
+import com.ghgande.j2mod.modbus.procimg.Register;
+import com.ghgande.j2mod.modbus.procimg.SimpleRegister;
+import com.ghgande.j2mod.modbus.util.ModbusUtil;
+
+public class TestModbus {
+	
+	private static ModbusResponse executeTransaction(TCPMasterConnection connection,
+	         ModbusRequest request) 
+	         throws ModbusIOException, ModbusSlaveException, ModbusException {
+	   ModbusTCPTransaction transaction = new ModbusTCPTransaction(connection);
+//	   System.out.print("Output : "+ transaction.getResponse());
+//	   System.out.print("Output : "+ transaction.getRequest());
+	   transaction.setRequest(request);
+	   transaction.execute();
+	   System.out.print("Output : "+ transaction.getResponse());
+	   return transaction.getResponse();
+	}
+
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+//		Object local = null;
+//		TCPMasterConnection con = null;
+//		ModbusTCPTransaction trans = null;
+//		final InetAddress address = InetAddress.getByName("113.164.176.132");
+//		con = new TCPMasterConnection(address);
+//		con.setPort(2253);
+//		con.setTimeout(1000);
+//		con.connect();
+//		ReadMultipleRegistersRequest ainRes = new ReadMultipleRegistersRequest(40072,10);
+//		   ainRes.setUnitID(1);
+//		   trans = new ModbusTCPTransaction(con);
+////           trans.setRetries(5);
+////           trans.setRequest(request);
+//           trans.setReconnecting(true);
+//           trans.setRequest(ainRes);
+//           int k = 0;	
+//           do {
+//               trans.execute();
+//               ModbusResponse res = trans.getResponse();
+//               System.out.println("out put: " + ((ReadMultipleRegistersResponse) res).getRegisterValue(k));
+//               k++;
+//           } while (k < 10);
+		
+		
+		
+//		Object local = null;
+//		TCPMasterConnection con = null;
+//		ModbusTCPTransaction trans = null;
+//		final InetAddress address = InetAddress.getByName("192.168.1.27");
+//		con = new TCPMasterConnection(address);
+//		con.setPort(1502);
+//		con.setTimeout(1000);
+//		con.connect();
+//		ReadMultipleRegistersRequest ainRes = new ReadMultipleRegistersRequest(0,10);
+//		   ainRes.setUnitID(3);
+//		   trans = new ModbusTCPTransaction(con);
+////           trans.setRetries(5);
+////           trans.setRequest(request);
+//           trans.setReconnecting(true);
+//           trans.setRequest(ainRes);
+//           int k = 0;	
+//           do {
+//               trans.execute();
+//               ModbusResponse res = trans.getResponse();
+//               System.out.println("out put: " + ((ReadMultipleRegistersResponse) res).getRegisterValue(k));
+//               k++;
+//           } while (k < 10);
+//		int addressId = 9129;
+//		int fa = 20;
+//		
+//		Object local = null;
+//		TCPMasterConnection con = null;
+//		ModbusTCPTransaction trans = null;
+//		final InetAddress address = InetAddress.getByName("14.241.228.79");
+//		con = new TCPMasterConnection(address);
+//		con.setPort(5501);
+//		con.setTimeout(1000);
+//		con.connect();
+//		ReadMultipleRegistersRequest ainRes = new ReadMultipleRegistersRequest(addressId,fa);
+////		ReadMultipleRegistersRequest ainRes = new ReadMultipleRegistersRequest(0,10);
+//		ReadMultipleRegistersResponse aina = new ReadMultipleRegistersResponse();
+//		   ainRes.setUnitID(5);
+//		   trans = new ModbusTCPTransaction(con);
+////           trans.setRetries(5);
+////           trans.setRequest(request);
+//           trans.setReconnecting(true);
+//           trans.setRequest(ainRes);
+//           int k = 0;	
+//           int j=0;
+//           do {
+//        	   j++;
+//               trans.execute();
+//               ModbusResponse res = trans.getResponse();
+//               aina = (ReadMultipleRegistersResponse) res;
+//               System.out.print("addressId ( "+addressId+" ) : " + ((ReadMultipleRegistersResponse) res).getRegisterValue(k));
+//               System.out.print(" mã hex : " + res.getHexMessage());
+//               System.out.println();
+//               if(j==4) {
+//            	   j=0;
+//            	   System.out.print("----- Total ( toInt ): " + toInt(aina.getRegister(k-3),aina.getRegister(k-2),aina.getRegister(k-1),aina.getRegister(k)));
+//            	   System.out.println();
+//            	   System.out.print("----- Total ( toFloat ): " + toFloat(aina.getRegister(k-3),aina.getRegister(k-2),aina.getRegister(k-1),aina.getRegister(k)));
+//            	   System.out.println();
+//            	   System.out.print("----- Total ( toLong ): " + toLong(aina.getRegister(k-3),aina.getRegister(k-2),aina.getRegister(k-1),aina.getRegister(k)));
+//            	   System.out.println();
+//               }
+//               k++;
+//               addressId++;
+//           } while (k < fa);
+//		
+		int addressId = 0;
+		int fa = 51;
+		
+		Object local = null;
+		TCPMasterConnection con = null;
+		ModbusTCPTransaction trans = null;
+		final InetAddress address = InetAddress.getByName("192.168.1.26");
+		con = new TCPMasterConnection(address);
+		con.setPort(8899);
+		con.setTimeout(1000);
+		con.connect();
+		ReadMultipleRegistersRequest ainRes = new ReadMultipleRegistersRequest(addressId,fa);
+//		ReadMultipleRegistersRequest ainRes = new ReadMultipleRegistersRequest(0,10);
+		ReadMultipleRegistersResponse aina = new ReadMultipleRegistersResponse();
+		
+		   ainRes.setUnitID(1);
+		   trans = new ModbusTCPTransaction(con);
+//           trans.setRetries(5);
+//           trans.setRequest(request);
+           trans.setReconnecting(true);
+           trans.setRequest(ainRes);
+           int k = 0;	
+           int j=0;
+           trans.execute();
+           do {
+        	   j++;
+               ModbusResponse res = trans.getResponse();
+//               InputRegister[] registers = ((ReadMultipleRegistersResponse) res).getRegisters();
+               aina = (ReadMultipleRegistersResponse) res;
+               System.out.print("addressId ( "+addressId+" ) : " + ((ReadMultipleRegistersResponse) res).getRegisterValue(addressId));
+               System.out.print(" mã hex : " + res.getHexMessage());
+               System.out.println();
+               if(addressId == 3) {
+                	   System.out.print("----- Total ( 1-2-3 ): " + toLong64bit(aina.getRegister(addressId-3),aina.getRegister(addressId-2),aina.getRegister(addressId-1),aina.getRegister(addressId)));
+                	   System.out.println();
+               }else if(addressId==8) {
+            	   System.out.print("----- Total ( 7-8 ): " + toInt32bit(aina.getRegister(addressId-1),aina.getRegister(addressId)));
+            	   System.out.println();
+               }
+               
+               addressId++;
+           } while (addressId < fa);
+		
+		
+	}
+	
+	
+	protected static long toInt32bit(InputRegister first, InputRegister second) {
+		byte[] bytes = new byte[4];
+		System.arraycopy(first.toBytes(), 0, bytes, 0, 2);
+		System.arraycopy(second.toBytes(), 0, bytes, 2, 2);
+
+		return ModbusUtil.registersToInt(bytes);
+	}
+
+	protected static float toFloat32bit(InputRegister first, InputRegister second, InputRegister th, InputRegister four) {
+		byte[] bytes = new byte[4];
+		System.arraycopy(second.toBytes(), 0, bytes, 0, 2);
+		System.arraycopy(first.toBytes(), 0, bytes, 2, 2);
+
+		int temp = ModbusUtil.registersToInt(bytes);
+		return Float.intBitsToFloat(temp);
+	}
+
+	protected static long toLong64bit(InputRegister first, InputRegister second, InputRegister th, InputRegister four) {
+		byte[] bytes = new byte[24];
+
+//		byte[] gg =  {0, 0, 0, 47, 8, 127, 19, 47, 0, 0, 0, 0};
+//		ModbusUtil.registersToLong(gg);
+//		ModbusUtil.registersToInt(gg);
+		//[0, 0, 0, 47, 8, 127, 19, 47, 0, 0, 0, 0]
+		System.arraycopy(first.toBytes(), 0, bytes, 0, 2);
+		System.arraycopy(second.toBytes(), 0, bytes, 2, 2);
+		System.arraycopy(th.toBytes(), 0, bytes, 4, 2);
+		System.arraycopy(four.toBytes(), 0, bytes, 6, 2);
+
+		return ModbusUtil.registersToLong(bytes);
+	}
+
+}

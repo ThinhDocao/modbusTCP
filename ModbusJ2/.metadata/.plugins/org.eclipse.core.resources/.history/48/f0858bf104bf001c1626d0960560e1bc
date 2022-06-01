@@ -1,0 +1,25 @@
+package mavenproject;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class timeOutTask extends TimerTask{
+
+	private RunableThead t;
+	private Timer timer;
+	
+	timeOutTask(RunableThead t, Timer timer){
+		this.t = t;
+		this.timer = timer;
+	}
+	@Override
+	public void run() {
+		if(!t.disConnectTF) {
+			timer.cancel();
+		}else {
+			System.out.println("aASDASDASDASDASDSADASDASDASDASDSADASD");
+		}
+		
+	}
+
+}

@@ -1,0 +1,21 @@
+package mavenproject;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class timeOutTask extends TimerTask{
+
+	private Thread t;
+	private Timer timer;
+	
+	timeOutTask(Thread t, Timer timer){
+		this.t = t;
+		this.timer = timer;
+	}
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

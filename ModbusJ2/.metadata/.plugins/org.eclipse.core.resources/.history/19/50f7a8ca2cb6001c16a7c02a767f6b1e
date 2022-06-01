@@ -1,0 +1,64 @@
+package mavenproject;
+
+import java.net.InetAddress;
+
+import com.ghgande.j2mod.modbus.ModbusException;
+import com.ghgande.j2mod.modbus.ModbusIOException;
+import com.ghgande.j2mod.modbus.ModbusSlaveException;
+import com.ghgande.j2mod.modbus.io.ModbusTCPTransaction;
+import com.ghgande.j2mod.modbus.msg.ModbusRequest;
+import com.ghgande.j2mod.modbus.msg.ModbusResponse;
+import com.ghgande.j2mod.modbus.msg.ReadMultipleRegistersRequest;
+import com.ghgande.j2mod.modbus.msg.ReadMultipleRegistersResponse;
+import com.ghgande.j2mod.modbus.net.TCPMasterConnection;
+
+public class TestModbus {
+	
+	private static ModbusResponse executeTransaction(TCPMasterConnection connection,
+	         ModbusRequest request) 
+	         throws ModbusIOException, ModbusSlaveException, ModbusException {
+	   ModbusTCPTransaction transaction = new ModbusTCPTransaction(connection);
+//	   System.out.print("Output : "+ transaction.getResponse());
+//	   System.out.print("Output : "+ transaction.getRequest());
+	   transaction.setRequest(request);
+	   transaction.execute();
+	   System.out.print("Output : "+ transaction.getResponse());
+	   return transaction.getResponse();
+	}
+
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+		Object local = null;
+		TCPMasterConnection con = null;
+		ModbusTCPTransaction trans = null;
+		final InetAddress address = InetAddress.getByName("192.168.1.27");
+		con = new TCPMasterConnection(address);
+		con.setPort(1502);
+		con.setTimeout(5000);
+
+//		log.info("[PVI SG1250] Try to connect with IP = {}, the port = {} ", iAddr.getHostAddress(), con.getPort());
+		con.connect();
+		trans = new ModbusTCPTransaction(con);
+		
+//		trans.setRetries(1);
+//		System.out.print(trans);
+		   ReadMultipleRegistersRequest request = new ReadMultipleRegistersRequest(0, 10);
+		   trans.setRequest(request);
+		   
+		   System.out.print("[PVI SG1250] Request Message : \n" + request.getHexMessage());
+
+			// send and receive
+		   ModbusResponse res = null;
+			trans.execute();
+			res = trans.getResponse();
+			
+			System.out.print("[PVI SG1250] Response Message : \n" + res.getHexMessage());
+		   
+//		   ReadMultipleRegistersResponse response = (ReadMultipleRegistersResponse) getModbusData(request);
+//           local = response.getRegisters();
+//		   ReadMultipleRegistersResponse response = (ReadMultipleRegistersResponse)
+//		       executeTransaction(con, request);
+//		System.out.print(response);
+	}
+
+}
